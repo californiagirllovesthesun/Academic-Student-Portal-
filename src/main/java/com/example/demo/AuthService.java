@@ -8,23 +8,25 @@ public class AuthService {
 
     private List<User> loadUsers() {
         List<User> users = new ArrayList<>();
-        File file = new File("user.txt");
-
-        if (!file.exists()) {
-            System.out.println("❌ Error: user.txt not found in the root directory!");
-            return users;
-        }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 3) {
-                    users.add(new User(parts[0].trim(), parts[1].trim(), parts[2].trim()));
+        
+        // Read directly from the compiled resources inside the JAR file
+        try (InputStream is = getClass().getResourceAsStream("/user.txt")) {
+            if (is == null) {
+                System.out.println("❌ Error: user.txt resource not found!");
+                return users;
+            }
+            
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 3) {
+                        users.add(new User(parts[0].trim(), parts[1].trim(), parts[2].trim()));
+                    }
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading user.txt: " + e.getMessage());
+            System.out.println("Error reading user.txt resource: " + e.getMessage());
         }
         return users;
     }
