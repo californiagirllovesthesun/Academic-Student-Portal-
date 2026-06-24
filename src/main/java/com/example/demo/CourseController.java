@@ -26,7 +26,7 @@ public class CourseController {
             "Office Hours: Mon 2-4pm", 
             "MWF 10:00 AM", 
             "Room 302", 
-            4, 
+            "4", 
             "No students enrolled yet",
             "Not provided", // For studentEmailString
             "Not provided", // For studentPhoneNumberString
