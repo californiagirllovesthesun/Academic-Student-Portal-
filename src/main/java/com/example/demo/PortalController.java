@@ -87,4 +87,16 @@ public class PortalController {
         String dashboard = role.equals("STUDENT") ? "student" : "instructor";
         return "redirect:/portal/" + dashboard + "?username=" + username;
     }
+
+    @GetMapping("/grade-submissions")
+    public String showGradeSubmissions(Model model) {
+        model.addAttribute("message", "Grade submissions page under construction.");
+        return "generic-info";
+    }
+
+    @GetMapping("/student-roster")
+    public String showStudentRoster(Model model) {
+        model.addAttribute("message", "Student roster page under construction.");
+        return "generic-info";
+    }
 }
