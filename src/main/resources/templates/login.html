@@ -6,23 +6,31 @@
     <title>Academic Student Portal</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body {
-            background-image: url('https://i.postimg.cc/wBcXd70w/loginacademicpage.jpg');
-            /* Forces the image to stretch to the exact dimensions of the browser window */
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            width: 400px;
-        }
-    </style>
+       <style>
+    body {
+        background-image: url('https://i.postimg.cc/wBcXd70w/loginacademicpage.jpg');
+        /* 'cover' keeps the image aspect ratio intact so it doesn't look blurry/stretched */
+        background-size: cover;
+        /* 'center' ensures the most important part of the cap stays in view */
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .glass-card {
+        background: rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+</style>
 </head>
 <body>
     <div class="glass-card p-8 rounded-2xl text-center shadow-2xl">
