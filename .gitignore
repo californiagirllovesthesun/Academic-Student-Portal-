@@ -7,3 +7,4 @@ user.txt
 
 # OS-specific files
 .DS_Store
+.gradle/
