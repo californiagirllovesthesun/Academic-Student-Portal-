@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Report Card</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; background: #fdfdfd; }
+        .card { background: white; border-radius: 8px; border-left: 5px solid #007BFF; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+    <h2>🎓 Academic Student Portal</h2>
+    <h3>Welcome back, <span th:text="${studentName}">Student</span>!</h3>
+    <a href="/portal/login">Logout</a>
+
+    <h3 style="margin-top: 30px;">Your Registered Module Performance:</h3>
+    <div th:each="course : ${courses}">
+        <div class="card">
+            <h4 th:text="${course.courseName} + ' (' + ${course.courseCode} + ')'">Course</h4>
+            <p><strong>Assigned Task:</strong> <span th:text="${course.currentAssignmentName}"></span></p>
+            <p><strong>Your Final Average Score:</strong> <span th:text="${course.studentGradeAverage} + '%'"></span></p>
+            <p><strong>Computed Standing Letter:</strong> <span style="font-weight: bold; color: #007BFF;" th:text="${course.letterGrade}"></span></p>
+        </div>
+    </div>
+</body>
+</html>

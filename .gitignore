@@ -1,0 +1,9 @@
+# Gradle build directories
+.gradle/
+build/
+
+# Sensitive local credential files
+user.txt
+
+# OS-specific files
+.DS_Store

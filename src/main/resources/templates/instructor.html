@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Instructor Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; background: #fafafa; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #28a745; color: white; }
+        .form-inline { background: #eee; padding: 15px; border-radius: 5px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>👨‍🏫 Instructor Control Panel</h2>
+    <a href="/portal/login">Logout</a>
+
+    <h3>Current Course & Student Roster Overview</h3>
+    <table>
+        <tr>
+            <th>Code</th>
+            <th>Course Name</th>
+            <th>Student Roster</th>
+            <th>Active Assignment</th>
+            <th>Current Average</th>
+            <th>Letter Grade</th>
+        </tr>
+        <tr th:each="course : ${courses}">
+            <td th:text="${course.courseCode}"></td>
+            <td th:text="${course.courseName}"></td>
+            <td th:text="${course.studentRoster}"></td>
+            <td th:text="${course.currentAssignmentName}"></td>
+            <td th:text="${course.studentGradeAverage} + '%'"></td>
+            <td th:text="${course.letterGrade}"></td>
+        </tr>
+    </table>
+
+    <div class="form-inline">
+        <h3>Gradebook Input Utility</h3>
+        <form action="/portal/instructor/update-grade" method="POST">
+            <input type="text" name="courseCode" placeholder="Course Code (e.g. CS-101)" required />
+            <input type="text" name="assignmentName" placeholder="Assignment Title" required />
+            <input type="number" step="0.1" name="grade" placeholder="Numeric Score (%)" required />
+            <button type="submit" style="background:#28a745; color:white; padding: 8px;">Post Grade</button>
+        </form>
+    </div>
+</body>
+</html>
