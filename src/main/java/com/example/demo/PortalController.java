@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import com.example.demo.model.Course;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +15,12 @@ public class PortalController {
 
     private final AuthService authService = new AuthService();
     private static final Map<String, String> profilePictures = new HashMap<>();
+
+    // Redirect root to login page
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/portal/login";
+    }
 
     @GetMapping("/login")
     public String showLoginPage() {
