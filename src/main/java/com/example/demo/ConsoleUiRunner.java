@@ -1,7 +1,10 @@
 package com.example.demo;
 
+import com.examimport com.example.demo.repository.CourseRepository;ple.demo.repository.CourseRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 
 @Component
 public class ConsoleUiRunner implements CommandLineRunner {

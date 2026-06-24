@@ -1,4 +1,6 @@
 package com.example.demo;
+import com.example.demo.repository.CourseRepository;
+import com.example.demo.repository.CourseRepository;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
