@@ -11,7 +11,6 @@ public class StudentController {
     @GetMapping("/student")
     public String showStudentDashboard(Model model, Principal principal) {
         model.addAttribute("courses", courseRepository.findAll());
-        model.addAttribute("username", principal != null ? principal.getName() : "Student");
         return "student";
     }
 }
