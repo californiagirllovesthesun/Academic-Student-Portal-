@@ -1,9 +1,12 @@
-package com.example.demo;
-package com.example.demo.repository; // Add this line
+package com.example.demo.repository;
 
+import com.example.demo.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.example.demo.Course; // Assuming Course model is in the main demo package
+import org.springframework.stereotype.Repository;
 
+@Repository
+public interface CourseRepository extends JpaRepository<Course, Long> {
+}
 public interface CourseRepository extends JpaRepository<Course, Long> {
 }
 
