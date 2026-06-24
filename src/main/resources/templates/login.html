@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Academic Portal Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #000; color: #fff; }
-        .login-box { background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #444; text-align: center; }
-        input { display: block; margin: 10px auto; padding: 8px; width: 200px; }
-        button { padding: 8px 15px; cursor: pointer; }
-        a { color: #aaa; text-decoration: none; font-size: 0.9em; margin-top: 15px; display: block; }
+        body {
+            background-image: url('https://i.postimg.cc/wBcXd70w/loginacademicpage.jpg');
+            background-size: cover;
+        }
+        .gold-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #FFD700;
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
-<body class="min-h-screen w-screen bg-cover bg-center bg-no-repeat bg-fixed flex items-center justify-center" style="background-image: url('/images/login-bg.png');">
-    <div class="login-box">
-        <h2>Login</h2>
-        <form action="/portal/login" method="post">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign In</button>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="gold-card p-8 rounded-2xl shadow-2xl w-96 text-center text-white">
+        <h1 class="text-2xl font-bold mb-6 text-[#FFD700]">Academic Portal Login</h1>
+        <form action="/portal/login" method="post" class="space-y-4">
+            <input type="text" name="username" placeholder="Username" class="w-full p-2 rounded bg-black/50 border border-white/20">
+            <input type="password" name="password" placeholder="Password" class="w-full p-2 rounded bg-black/50 border border-white/20">
+            <button type="submit" class="w-full py-2 border border-white rounded font-bold hover:bg-[#FFD700] hover:text-black transition">Sign In</button>
         </form>
-        <a href="/portal/register">Create Account</a>
+        <a href="/portal/register" class="block mt-4 w-full py-2 border border-white rounded font-bold hover:bg-[#FFD700] hover:text-black transition">Create Account</a>
     </div>
 </body>
 </html>
