@@ -2,6 +2,8 @@ package com.example.demo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity 
 public class Course {
@@ -16,19 +18,21 @@ public class Course {
     private String studentRoster;
     private String studentEmailString;
     private String studentPhoneNumberString;
-    private String studentSchedulingInfo; // Fixed: Declared the missing field!
+    private String studentSchedulingInfo;
     private String meetingTime;
     private String roomNumber;
+    private String currentAssignmentName = "None";
+    private double studentGradeAverage = 88.5;
 
     // 1. Mandatory Default Constructor
     public Course() {
     }
 
-    // 2. Overloaded Constructor
+    // 2. Overloaded Constructor (Restored exactly for your other controllers)
     public Course(String courseName, String courseCode, String instructorName,
                   String instructorInfo, String meetingTime, String roomNumber, int credits,
                   String studentRoster, String studentEmailString, String studentPhoneNumberString, 
-                  String studentSchedulingInfo) {
+                  String studentSchedulingInfo){
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.instructorName = instructorName;
@@ -42,124 +46,62 @@ public class Course {
         this.studentSchedulingInfo = studentSchedulingInfo;     
     }
 
-    // 3. Getters and Setters
-    public String getCourseName() {
-        return courseName;
+    // 3. Static Mock Data Methods for Dashboards
+    public static List<Course> getStudentCourses() {
+        List<Course> list = new ArrayList<>();
+        Course c1 = new Course("Advanced Java Web Development", "CS-302", "Dr. Smith", "Faculty Info", "MWF 10AM", "Room 404", 4, "Katie", "katie@univ.edu", "555-0123", "Full-time");
+        c1.setStudentGradeAverage(94.5);
+        Course c2 = new Course("Database Systems & Cloud Architecture", "CS-440", "Prof. Jones", "Faculty Info", "TTh 1PM", "Room 102", 3, "Katie", "katie@univ.edu", "555-0123", "Full-time");
+        c2.setStudentGradeAverage(88.2);
+        list.add(c1);
+        list.add(c2);
+        return list;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public static List<Course> getInstructorCourses() {
+        List<Course> list = new ArrayList<>();
+        Course c1 = new Course("Advanced Java Web Development", "CS-302", "Dr. Smith", "Faculty Info", "MWF 10AM", "Room 404", 4, "Katie Carlson", "katie@univ.edu", "555-0123", "Full-time");
+        c1.setStudentGradeAverage(94.5);
+        Course c2 = new Course("Introduction to Software Engineering", "CS-101", "Dr. Smith", "Faculty Info", "MWF 1PM", "Room 204", 4, "Alex Rivera", "alex@univ.edu", "555-0124", "Full-time");
+        c2.setStudentGradeAverage(76.0);
+        list.add(c1);
+        list.add(c2);
+        return list;
     }
 
-    public String getCourseCode() {
-        return courseCode;
+    // 4. Getters and Setters
+    public String getCourseName() { return courseName; }
+    public void setCourseName(String courseName) { this.courseName = courseName; }
+    public String getCourseCode() { return courseCode; }
+    public void setCourseCode(String courseCode) { this.courseCode = courseCode; }
+    public String getInstructorName() { return instructorName; }
+    public void setInstructorName(String instructorName) { this.instructorName = instructorName; }
+    public String getInstructorInfo() { return instructorInfo; }
+    public void setInstructorInfo(String instructorInfo) { this.instructorInfo = instructorInfo; }
+    public String getMeetingTime() { return meetingTime; }
+    public void setMeetingTime(String meetingTime) { this.meetingTime = meetingTime; }
+    public String getRoomNumber() { return roomNumber; }
+    public void setRoomNumber(String roomNumber) { this.roomNumber = roomNumber; }
+    public int getCredits() { return credits; }
+    public void setCredits(int credits) { this.credits = credits; }
+    public String getStudentRoster() { return studentRoster; }
+    public void setStudentRoster(String studentRoster) { this.studentRoster = studentRoster; }
+    public String getStudentEmailString() { return studentEmailString; }
+    public void setStudentEmailString(String studentEmailString) { this.studentEmailString = studentEmailString; }
+    public String getStudentPhoneNumberString() { return studentPhoneNumberString; }
+    public void setStudentPhoneNumberString(String studentPhoneNumberString) { this.studentPhoneNumberString = studentPhoneNumberString; }
+    public String getStudentSchedulingInfo() { return studentSchedulingInfo; }
+    public void setStudentSchedulingInfo(String studentSchedulingInfo) { this.studentSchedulingInfo = studentSchedulingInfo; }
+    public String getCurrentAssignmentName() { return currentAssignmentName; }
+    public void setCurrentAssignmentName(String currentAssignmentName) { this.currentAssignmentName = currentAssignmentName; }
+    public double getStudentGradeAverage() { return studentGradeAverage; }
+    public void setStudentGradeAverage(double studentGradeAverage) { this.studentGradeAverage = studentGradeAverage; }
+    
+    public String getLetterGrade() {
+        if (this.studentGradeAverage >= 90) return "A";
+        if (this.studentGradeAverage >= 80) return "B";
+        if (this.studentGradeAverage >= 70) return "C";
+        if (this.studentGradeAverage >= 60) return "D";
+        return "F";
     }
-
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
-
-    public String getInstructorName() {
-        return instructorName;
-    }
-
-    public void setInstructorName(String instructorName) {
-        this.instructorName = instructorName;
-    }
-
-    public String getInstructorInfo() {
-        return instructorInfo;
-    }
-
-    public void setInstructorInfo(String instructorInfo) {
-        this.instructorInfo = instructorInfo;
-    }
-
-    public String getMeetingTime() {
-        return meetingTime;
-    }
-
-    public void setMeetingTime(String meetingTime) {
-        this.meetingTime = meetingTime;
-    }
-
-    public String getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
-
-    public int getCredits() {
-        return credits;
-    }
-
-    public void setCredits(int credits) {
-        this.credits = credits;
-    }
-
-    public String getStudentRoster() {
-        return studentRoster;
-    }
-
-    public void setStudentRoster(String studentRoster) {
-        this.studentRoster = studentRoster;
-    }
-
-    public String getStudentEmailString() {
-        return studentEmailString;
-    }
-
-    public void setStudentEmailString(String studentEmailString) {
-        this.studentEmailString = studentEmailString;
-    }
-
-    public String getStudentPhoneNumberString() {
-        return studentPhoneNumberString;
-    }
-
-    public void setStudentPhoneNumberString(String studentPhoneNumberString) {
-        this.studentPhoneNumberString = studentPhoneNumberString;
-    }
-
-    public String getStudentSchedulingInfo() {
-        return studentSchedulingInfo;
-    }
-
-    public void setStudentSchedulingInfo(String studentSchedulingInfo) {
-        this.studentSchedulingInfo = studentSchedulingInfo;
-    }
-// 1. Add these new private fields to the top of Course.java
-private String currentAssignmentName = "None";
-private double studentGradeAverage = 0.0;
-
-// 2. Add these Getters and Setters at the bottom of Course.java
-public String getCurrentAssignmentName() {
-    return currentAssignmentName;
-}
-
-public void setCurrentAssignmentName(String currentAssignmentName) {
-    this.currentAssignmentName = currentAssignmentName;
-}
-
-public double getStudentGradeAverage() {
-    return studentGradeAverage;
-}
-
-public void setStudentGradeAverage(double studentGradeAverage) {
-    this.studentGradeAverage = studentGradeAverage;
-}
-
-// 3. Add a helper method to calculate Letter Grades automatically
-public String getLetterGrade() {
-    if (this.studentGradeAverage >= 90) return "A";
-    if (this.studentGradeAverage >= 80) return "B";
-    if (this.studentGradeAverage >= 70) return "C";
-    if (this.studentGradeAverage >= 60) return "D";
-    return "F";
-}
-
-
-
 }

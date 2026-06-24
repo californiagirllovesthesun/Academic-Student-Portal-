@@ -13,9 +13,6 @@ import java.util.Map;
 public class PortalController {
 
     private final AuthService authService = new AuthService();
-    private final CourseService courseService = new CourseService();
-    
-    // In-memory profile picture store (Username -> Base64 Image String)
     private static final Map<String, String> profilePictures = new HashMap<>();
 
     @GetMapping("/login")
@@ -56,7 +53,7 @@ public class PortalController {
     @GetMapping("/student")
     public String showStudentDashboard(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
-        model.addAttribute("courses", courseService.getStudentCourses());
+        model.addAttribute("courses", Course.getStudentCourses());
         model.addAttribute("profilePic", profilePictures.getOrDefault(username, null));
         return "student";
     }
@@ -64,13 +61,13 @@ public class PortalController {
     @GetMapping("/instructor")
     public String showInstructorDashboard(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
-        model.addAttribute("courses", courseService.getInstructorCourses());
+        model.addAttribute("courses", Course.getInstructorCourses());
         model.addAttribute("profilePic", profilePictures.getOrDefault(username, null));
         return "instructor";
     }
 
     @PostMapping("/upload-profile")
-    public String handleProfileUpload(@RequestParam String username, @RequestParam String role, @RequestParam "photo" MultipartFile file, Model model) {
+    public String handleProfileUpload(@RequestParam String username, @RequestParam String role, @RequestParam("photo") MultipartFile file, Model model) {
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
