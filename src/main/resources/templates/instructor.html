@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instructor Dashboard - Academic Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="min-h-screen w-screen m-0 p-6 flex items-center justify-center bg-cover bg-center bg-no-repeat bg-fixed text-white"
-      th:style="'background-image: url(' + @{/images/instructor-bg.png} + ');'">
+      style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920');">
 
-    <div class="w-full max-w-6xl p-8 rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md shadow-2xl space-y-6">
+    <div class="absolute inset-0 bg-slate-950/40 backdrop-blur-xs pointer-events-none z-0"></div>
+
+    <div class="w-full max-w-6xl p-8 rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur-md shadow-2xl space-y-6 relative z-10">
         
         <div class="flex justify-between items-center bg-cyan-500/10 border border-cyan-500/20 p-4 rounded-xl">
             <div class="flex items-center gap-3">
@@ -17,7 +19,7 @@
                 <span class="text-lg font-bold tracking-wider uppercase text-cyan-300">Instructor Dashboard</span>
             </div>
             <div class="text-right">
-                <p class="font-semibold text-sm">Dr. Alex Chen</p>
+                <p class="font-semibold text-sm" th:text="${username != null ? username : 'Dr. Alex Chen'}">Dr. Alex Chen</p>
                 <p class="text-xs text-white/60">Spring 2026 Semester</p>
             </div>
         </div>
@@ -28,8 +30,8 @@
                 <div class="bg-white/5 p-5 rounded-xl border border-white/10 space-y-3">
                     <h3 class="font-bold text-sm uppercase tracking-wider text-cyan-400">Quick Actions</h3>
                     <div class="grid grid-cols-2 gap-2 text-center text-xs">
-                        <button class="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition">📝 Grade Submissions</button>
-                        <button class="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition">👥 Student Roster</button>
+                        <button class="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition cursor-pointer">📝 Grade Submissions</button>
+                        <button class="p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition cursor-pointer">👥 Student Roster</button>
                     </div>
                 </div>
 
@@ -52,7 +54,7 @@
                 <h3 class="font-bold text-sm uppercase tracking-wider text-cyan-400">Student Status Metrics</h3>
                 <div class="p-4 bg-black/20 border border-white/5 rounded-lg text-center space-y-2">
                     <p class="text-xs text-white/50">Average Attendance</p>
-                    <p class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r top from-cyan-400 to-purple-400">94.2%</p>
+                    <p class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">94.2%</p>
                 </div>
                 <div class="space-y-2 text-xs">
                     <div class="flex justify-between p-2 border-b border-white/5"><span>Assignments Flagged</span> <span class="text-amber-400 font-bold">2</span></div>
@@ -71,7 +73,7 @@
 
                 <div class="bg-white/5 p-5 rounded-xl border border-white/10 space-y-3">
                     <h3 class="font-bold text-sm uppercase tracking-wider text-cyan-400">Communication Hub</h3>
-                    <button class="w-full py-2 bg-cyan-500 hover:bg-cyan-600 font-semibold text-sm rounded-lg shadow-md transition">
+                    <button class="w-full py-2 bg-cyan-500 hover:bg-cyan-600 font-semibold text-sm rounded-lg shadow-md transition cursor-pointer">
                         Broadcast Message to TAs
                     </button>
                 </div>
