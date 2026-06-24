@@ -46,17 +46,22 @@ public class PortalController {
         return "register";
     }
 
-    @PostMapping("/register")
-    public String handleRegister(@RequestParam String username, @RequestParam String password, @RequestParam String role, Model model) {
-        boolean success = authService.registerUser(username, password, role);
-        if (success) {
-            model.addAttribute("success", "Registration successful! Please sign in.");
-            return "login";
-        }
-        model.addAttribute("error", "Username already exists.");
-        return "register";
+    
+@PostMapping("/register")
+public String handleRegister(@RequestParam String username, 
+                             @RequestParam String password, 
+                             @RequestParam String role,
+                             @RequestParam(required=false) String fullName,
+                             @RequestParam(required=false) String email, 
+                             Model model) {
+    boolean success = authService.registerUser(username, password, role);
+    if (success) {
+        model.addAttribute("success", "Registration successful! Please sign in.");
+        return "login";
     }
-
+    model.addAttribute("error", "Username already exists.");
+    return "register";
+}
     @GetMapping("/student")
     public String showStudentDashboard(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
