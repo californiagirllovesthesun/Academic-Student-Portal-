@@ -14,11 +14,11 @@ public class DatabaseSeeder {
         return args -> {
             if (repository.count() == 0) {
                 Course c1 = new Course();
-                c1.setName("Cosmic Architecture 101");
+                c1.setCourseName("Cosmic Architecture 101");
                 repository.save(c1);
 
                 Course c2 = new Course();
-                c2.setName("Data Networks in Space");
+                c2.setCourseName("Data Networks in Space");
                 repository.save(c2);
             }
         };
