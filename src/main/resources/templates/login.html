@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Academic Student Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Academic Portal Login</title>
     <style>
-        body {
-            /* This ensures the entire image fits without cropping */
-            background-image: url('https://i.postimg.cc/wBcXd70w/loginacademicpage.jpg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #020617; /* Matches your deep space theme */
-            min-height: 100vh;
-        }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #000; color: #fff; }
+        .login-box { background: #1a1a1a; padding: 20px; border-radius: 8px; border: 1px solid #444; }
+        input { display: block; margin: 10px 0; padding: 8px; width: 200px; }
+        button { padding: 8px 15px; cursor: pointer; }
     </style>
 </head>
-<body class="flex items-center justify-center">
-    </body>
+<body>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="/portal/login" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+</body>
 </html>
