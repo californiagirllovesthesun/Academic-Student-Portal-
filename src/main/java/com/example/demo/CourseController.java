@@ -1,4 +1,6 @@
 package com.example.demo;
+
+import com.example.demo.model.Course;
 import com.example.demo.repository.CourseRepository;
 
 import com.example.demo.model.Course;

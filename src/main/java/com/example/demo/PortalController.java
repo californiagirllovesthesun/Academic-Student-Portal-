@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.model.Course;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

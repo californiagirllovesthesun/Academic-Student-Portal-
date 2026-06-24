@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.model.Course;
+
 import com.example.demo.repository.CourseRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
