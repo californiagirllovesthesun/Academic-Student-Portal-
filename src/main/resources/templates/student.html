@@ -1,24 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Student Report Card</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 30px; background: #fdfdfd; }
-        .card { background: white; border-radius: 8px; border-left: 5px solid #007BFF; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    </style>
+    <title>Student Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <h2>🎓 Academic Student Portal</h2>
-    <h3>Welcome back, <span th:text="${studentName}">Student</span>!</h3>
-    <a href="/portal/login">Logout</a>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <header class="flex justify-between items-center border-b border-slate-200 pb-6 mb-8">
+            <div>
+                <h1 class="text-3xl font-black text-slate-900 tracking-tight">Academic Portal</h1>
+                <p class="text-slate-500 text-sm">Welcome back to your course overview.</p>
+            </div>
+            <a href="/portal/login" class="px-4 py-2 border border-slate-300 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">Logout</a>
+        </header>
 
-    <h3 style="margin-top: 30px;">Your Registered Module Performance:</h3>
-    <div th:each="course : ${courses}">
-        <div class="card">
-            <h4 th:text="${course.courseName} + ' (' + ${course.courseCode} + ')'">Course</h4>
-            <p><strong>Assigned Task:</strong> <span th:text="${course.currentAssignmentName}"></span></p>
-            <p><strong>Your Final Average Score:</strong> <span th:text="${course.studentGradeAverage} + '%'"></span></p>
-            <p><strong>Computed Standing Letter:</strong> <span style="font-weight: bold; color: #007BFF;" th:text="${course.letterGrade}"></span></p>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-xs border border-slate-200 text-center flex flex-col items-center">
+                <div class="relative w-32 h-32 mb-4">
+                    <img th:if="${profilePic != null}" th:src="${profilePic}" class="w-32 h-32 rounded-full object-cover border-4 border-blue-500 shadow-inner">
+                    <div th:if="${profilePic == null}" class="w-32 h-32 rounded-full bg-blue-100 border border-blue-200 text-blue-600 flex items-center justify-center text-4xl font-black uppercase" th:text="${#strings.substring(username,0,1)}"></div>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900" th:text="${username}">Student Name</h3>
+                <span class="px-2.5 py-0.5 bg-blue-100 text-blue-700 font-bold text-xs tracking-wide rounded-full uppercase mt-1">Student</span>
+
+                <form action="/portal/upload-profile" method="POST" enctype="multipart/form-data" class="mt-6 w-full pt-4 border-t border-slate-100">
+                    <input type="hidden" name="username" th:value="${username}">
+                    <input type="hidden" name="role" value="STUDENT">
+                    <label class="block text-xs font-semibold text-slate-400 uppercase text-left mb-2">Change Profile Picture</label>
+                    <input type="file" name="photo" accept="image/*" required class="block w-full text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200 cursor-pointer">
+                    <button type="submit" class="mt-2 w-full text-xs bg-slate-900 hover:bg-slate-800 text-white font-bold py-1.5 px-3 rounded-lg transition">Upload Photo</button>
+                </form>
+            </div>
+
+            <div class="md:col-span-3 bg-white p-6 rounded-2xl shadow-xs border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-4">Current Enrolled Courses</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-slate-400 text-xs font-bold uppercase tracking-wider">
+                                <th class="py-3 px-4">Course Name</th>
+                                <th class="py-3 px-4">Instructor</th>
+                                <th class="py-3 px-4 text-center">Grade Score</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm">
+                            <tr th:each="course : ${courses}" class="hover:bg-slate-50/70 transition">
+                                <td class="py-4 px-4 font-semibold text-slate-900 th:text='${course.courseName}'">Course</td>
+                                <td class="py-4 px-4 text-slate-500 th:text='${course.instructorName}'">Instructor</td>
+                                <td class="py-4 px-4 text-center">
+                                    <span class="inline-block px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold rounded-lg th:text='${course.grade}'">95%</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>
