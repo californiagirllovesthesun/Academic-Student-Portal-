@@ -59,6 +59,17 @@ public class PortalController {
         return "instructor";
     }
 
+    @PostMapping("/broadcast-ta")
+    @ResponseBody
+    public String broadcastMessage(@RequestParam String message) {
+        return "Message Broadcasted: " + message;
+    }
+
+    @PostMapping("/add-assignment")
+    public String addAssignment(@RequestParam String courseCode, @RequestParam String assignmentName) {
+        return "redirect:/portal/instructor?username=admin";
+    }
+
     @GetMapping("/grade-submissions")
     public String showGradeSubmissions() { return "generic-info"; }
 
