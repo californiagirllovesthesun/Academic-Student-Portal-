@@ -9,12 +9,12 @@ public class PortalController {
     @GetMapping("/instructor")
     public String instructor() {
         // This maps the URL /instructor to your static file
-        return "forward:/instructor.html"; 
+        return "forward:/portal/instructor.html"; 
     }
 
     @GetMapping("/student")
     public String student() {
         // You can add one for your student page too!
-        return "forward:/student.html"; 
+        return "forward:/portal/student.html"; 
     }
 }
