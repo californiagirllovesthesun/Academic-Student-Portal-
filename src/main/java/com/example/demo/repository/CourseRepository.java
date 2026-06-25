@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, String> {
+    // Spring Data JPA will automatically implement common CRUD operations
 }

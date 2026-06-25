@@ -17,23 +17,27 @@ public class CourseController {
     public CourseController(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
         
-        this.courseRepository.deleteAll(); // Clears any old bugged data
+        // Only clear if you want to wipe data on every restart
+        this.courseRepository.deleteAll(); 
         
-        this.courseRepository.save(new Course(
-            "Intro to Java", 
-            "CS-101", 
-            "Dr. Smith", 
-            "Office Hours: Mon 2-4pm", 
-            "MWF 10:00 AM", 
-            "Room 302", 
-            "4", 
-            "No students enrolled yet",
-            "Not provided", // For studentEmailString
-            "Not provided", // For studentPhoneNumberString
-            "Standard Track" // For studentSchedulingInfo
-        ));
-    } // <-- FIXED: Added this missing closing brace for the constructor!
-
+        // Seed an initial course properly
+        Course initialCourse = new Course();
+        initialCourse.setCourseCode("CS-101");
+        initialCourse.setCourseName("Intro to Java");
+        initialCourse.setInstructorName("Dr. Smith");
+        initialCourse.setInstructorInfo("Office Hours: Mon 2-4pm");
+        initialCourse.setMeetingTime("MWF 10:00 AM");
+        initialCourse.setRoomNumber("Room 302");
+        initialCourse.setCredits("4");
+        initialCourse.setStudentRoster("No students enrolled yet");
+        initialCourse.setStudentEmailString("Not provided");
+        initialCourse.setStudentPhoneNumberString("Not provided");
+        initialCourse.setStudentSchedulingInfo("Standard Track");
+        initialCourse.setCurrentAssignmentName("N/A");
+        initialCourse.setStudentGradeAverage(0.0);
+        
+        this.courseRepository.save(initialCourse);
+    }
     @GetMapping
     public List<Course> getAllCourses() {
         return courseRepository.findAll();

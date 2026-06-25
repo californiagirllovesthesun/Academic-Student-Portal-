@@ -1,6 +1,8 @@
 package com.example.demo;
 
 import com.example.demo.model.*;
+import com.example.demo.service.CourseService; // Import your service
+import org.springframework.beans.factory.annotation.Autowired; // Import for dependency injection
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/portal")
 public class PortalController {
+    
+    // Inject the service instead of hard-instantiating it
+    @Autowired
+    private CourseService courseService;
+    
     private final AuthService authService = new AuthService();
 
     @GetMapping("/")
@@ -50,14 +57,16 @@ public class PortalController {
     @GetMapping("/student")
     public String showStudentDashboard(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
-        model.addAttribute("courses", Course.getStudentCourses());
+        // Using the service instead of the static method
+        model.addAttribute("courses", courseService.getAllCourses());
         return "student";
     }
 
     @GetMapping("/instructor")
     public String showInstructorDashboard(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
-        model.addAttribute("courses", Course.getInstructorCourses());
+        // Using the service instead of the static method
+        model.addAttribute("courses", courseService.getAllCourses());
         return "instructor";
     }
 }

@@ -22,24 +22,23 @@ public class Course {
 
     public Course() {}
 
-    // Full constructor to match your controller
-    public Course(String code, String name, String instructor, String info, String time, String room, String credits, String roster, String email, String phone, String schedule) {
-        this.courseCode = code;
-        this.courseName = name;
-        this.instructorName = instructor;
-        this.instructorInfo = info;
-        this.meetingTime = time;
-        this.roomNumber = room;
-        this.credits = credits;
-        this.studentRoster = roster;
-        this.studentEmailString = email;
-        this.studentPhoneNumberString = phone;
-        this.studentSchedulingInfo = schedule;
-    }
-
-    // Static helper methods
-    public static List<Course> getStudentCourses() { return new ArrayList<>(); }
-    public static List<Course> getInstructorCourses() { return new ArrayList<>(); }
+    public Course(String code, String name, String instructor, String info, String time, String room, String credits, 
+              String roster, String email, String phone, String schedule, String assignment, double avg) {
+    this.courseCode = code;
+    this.courseName = name;
+    this.instructorName = instructor;
+    this.instructorInfo = info;
+    this.meetingTime = time;
+    this.roomNumber = room;
+    this.credits = credits;
+    this.studentRoster = roster;
+    this.studentEmailString = email;
+    this.studentPhoneNumberString = phone;
+    this.studentSchedulingInfo = schedule;
+    this.currentAssignmentName = assignment;
+    this.studentGradeAverage = avg;
+}
+    
 
     // Getters and Setters
     public String getCourseCode() { return courseCode; }
