@@ -1,4 +1,4 @@
-# Step 1: Use an official lightweight OpenJDK image for building
+nano Dockerfile# Step 1: Use an official lightweight OpenJDK image for building
 FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
