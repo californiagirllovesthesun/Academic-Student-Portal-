@@ -8,13 +8,11 @@ public class PortalController {
     
     @GetMapping("/portal-instructor")
     public String instructor() {
-        // This maps the URL /instructor to your static file
-        return "forward:/portal/instructor.html"; 
+        return "instructor"; // Spring automatically looks for templates/instructor.html
     }
 
     @GetMapping("/portal-of-student")
     public String student() {
-        // You can add one for your student page too!
-        return "forward:/portal/student.html"; 
+        return "student"; // Spring automatically looks for templates/student.html
     }
 }
