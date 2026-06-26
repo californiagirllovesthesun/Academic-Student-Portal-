@@ -14,10 +14,25 @@ public class PortalController {
         return "redirect:/portal/login"; 
     }
 
+    // Handles the initial loading of the login page
     @GetMapping("/login")
     public String showLoginPage() { 
         return "login"; 
     }
+
+    // Handles the FORM submission (The "Sign In" button)
+    @PostMapping("/login")
+    public String handleLogin(@RequestParam String username, @RequestParam String password) {
+        // Add your authentication logic here
+        return "redirect:/portal/student?username=" + username; 
+    }
+
+    // Handles the "Create Account" link
+    @GetMapping("/register")
+    public String showRegisterPage() {
+        return "register"; 
+    }
+}
 
     @GetMapping("/student")
     public String showStudentDashboard(@RequestParam String username, Model model) {
