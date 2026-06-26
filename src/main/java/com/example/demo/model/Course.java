@@ -20,6 +20,19 @@ public class Course {
     private String currentAssignmentName;
     private double studentGradeAverage;
 
+    // Add these two methods to provide data for the dashboards
+    public static List<Course> getStudentCourses() {
+        List<Course> list = new ArrayList<>();
+        list.add(new Course("CS-302", "Advanced Java", "Dr. Smith", "Info", "MWF 10AM", "Room 404", "4", "Katie", "katie@univ.edu", "555-0123", "Full-time", "None", 94.5));
+        return list;
+    }
+
+    public static List<Course> getInstructorCourses() {
+        List<Course> list = new ArrayList<>();
+        list.add(new Course("CS-302", "Advanced Java", "Dr. Smith", "Info", "MWF 10AM", "Room 404", "4", "Katie Carlson", "katie@univ.edu", "555-0123", "Full-time", "None", 88.5));
+        return list;
+    }
+
     public Course() {}
 
     public Course(String code, String name, String instructor, String info, String time, String room, String credits, 
