@@ -21,7 +21,12 @@ public class PortalController {
 
     @PostMapping("/login")
     public String handleLogin(@RequestParam String username, @RequestParam String password) {
-        return "redirect:/portal/student?username=" + username; 
+        // Logic: Simulate role check based on username
+        if (username.toLowerCase().contains("instructor")) {
+            return "redirect:/portal/instructor?username=" + username;
+        } else {
+            return "redirect:/portal/student?username=" + username;
+        }
     }
 
     @GetMapping("/register")
