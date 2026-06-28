@@ -9,7 +9,8 @@ import com.example.demo.model.Course;
 @RequestMapping("/portal")
 public class PortalController {
 
-    @GetMapping("/")
+    // Adding a leading slash here makes it match "/" instead of "/portal/"
+    @GetMapping({"/", ""}) 
     public String index() { 
         return "redirect:/portal/login"; 
     }
