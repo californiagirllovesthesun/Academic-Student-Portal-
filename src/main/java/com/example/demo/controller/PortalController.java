@@ -39,6 +39,9 @@ public class PortalController {
     public String showStudentDashboard(@RequestParam String username, Model model) {
         model.addAttribute("username", username);
         model.addAttribute("courses", Course.getStudentCourses());
+        
+        System.out.println("DEBUG: Courses size is " + Course.getStudentCourses().size());
+        
         return "student";
     }
 
@@ -48,4 +51,20 @@ public class PortalController {
         model.addAttribute("courses", Course.getInstructorCourses());
         return "instructor";
     }
+@PostMapping("/save-profile")
+    public String saveProfile(@RequestParam String username, 
+                              @RequestParam String email, 
+                              @RequestParam String phone) {
+        
+        // Debug: Log the received data to the Render console
+        System.out.println("DEBUG: Updating profile for " + username);
+        System.out.println("DEBUG: New Email: " + email);
+        System.out.println("DEBUG: New Phone: " + phone);
+        
+        // After "saving," redirect the user back to their dashboard
+        return "redirect:/portal/student?username=" + username;
+    }
+
+
+
 }
